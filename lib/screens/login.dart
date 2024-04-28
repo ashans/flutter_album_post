@@ -70,7 +70,7 @@ class _LoginPageState extends State<LoginPage> {
               child: const Text('Login'),
             ),
             const SizedBox(height: 20),
-            Text(err)
+            Text(err, style: const TextStyle(color: Colors.red),)
           ],
         ),
       ),

@@ -3,39 +3,32 @@ import 'package:provider/provider.dart';
 import 'package:sample_application/models/album_dto.dart';
 import 'package:sample_application/providers/resource_provider.dart';
 
-class AlbumList extends StatefulWidget {
+class AlbumList extends StatelessWidget {
   const AlbumList({super.key});
 
   @override
-  State<AlbumList> createState() => _AlbumListState();
-}
-
-class _AlbumListState extends State<AlbumList> {
-  var albums = <Album>[];
-
-  void fetchAlbums(BuildContext context) async {
-    final resourceProvider = context.read<ResourceProvider>();
-    final fethed = await resourceProvider.getAlbums();
-    setState(() {
-      albums = fethed;
-    });
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    fetchAlbums(context);
-  }
-
-  @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      itemCount: albums.length,
-      itemBuilder: (context, index) {
-        final item = albums[index];
-        return ListTile(
-            leading: const Icon(Icons.music_note_outlined), title: Text(item.title));
-      },
-    );
+    return FutureBuilder<List<Album>>(
+        future: context.read<ResourceProvider>().getAlbums(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(child: CircularProgressIndicator());
+          }
+          if (snapshot.hasError) {
+            return const Center(
+                child: Text('Error loading albums',
+                    style: TextStyle(color: Colors.red)));
+          }
+          final albums = snapshot.data!;
+          return ListView.builder(
+            itemCount: albums.length,
+            itemBuilder: (context, index) {
+              final item = albums[index];
+              return ListTile(
+                  leading: const Icon(Icons.music_note_outlined),
+                  title: Text(item.title));
+            },
+          );
+        });
   }
 }
