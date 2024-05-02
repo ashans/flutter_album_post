@@ -29,11 +29,9 @@ class CommentList extends StatelessWidget {
                 leading: const Icon(Icons.image),
                 title: Text(item.name),
                 subtitle: Text(item.body),
-                onTap: () {},
               );
             },
           );
-          ;
         });
   }
 }

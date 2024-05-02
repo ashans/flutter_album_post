@@ -4,12 +4,16 @@ import 'package:sample_application/models/album_dto.dart';
 import 'package:sample_application/providers/resource_provider.dart';
 
 class AlbumList extends StatelessWidget {
-  const AlbumList({super.key});
+  AlbumList({super.key});
+
+  Future<List<Album>>? _albums;
 
   @override
   Widget build(BuildContext context) {
+    _albums ??= context.read<ResourceProvider>().getAlbums();
+
     return FutureBuilder<List<Album>>(
-        future: context.read<ResourceProvider>().getAlbums(),
+        future: _albums,
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(child: CircularProgressIndicator());

@@ -5,12 +5,16 @@ import 'package:sample_application/providers/resource_provider.dart';
 import 'package:sample_application/screens/comment_view.dart';
 
 class PostList extends StatelessWidget {
-  const PostList({super.key});
+  PostList({super.key});
+
+  Future<List<Post>>? posts;
 
   @override
   Widget build(BuildContext context) {
+    posts ??= context.read<ResourceProvider>().getPosts();
+
     return FutureBuilder<List<Post>>(
-        future: context.read<ResourceProvider>().getPosts(),
+        future: posts,
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(child: CircularProgressIndicator());
