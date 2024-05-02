@@ -1,7 +1,10 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sample_application/providers/user_service.dart';
 import 'package:sample_application/providers/auth_service.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -49,7 +52,23 @@ class _LoginPageState extends State<LoginPage> {
       body: Padding(
         padding: const EdgeInsets.all(20.0),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            RichText(
+              text: TextSpan(
+                children: [
+                  const TextSpan(text: 'Select a user from\n'),
+                  TextSpan(
+                      text: 'https://jsonplaceholder.typicode.com/users',
+                      style:
+                          const TextStyle(decoration: TextDecoration.underline),
+                      recognizer: TapGestureRecognizer()
+                        ..onTap = () => launchUrlString(
+                            'https://jsonplaceholder.typicode.com/users'))
+                ],
+                style: const TextStyle(color: Colors.grey),
+              ),
+            ),
             TextField(
               controller: _usernameController,
               decoration: const InputDecoration(
@@ -70,7 +89,11 @@ class _LoginPageState extends State<LoginPage> {
               child: const Text('Login'),
             ),
             const SizedBox(height: 20),
-            Text(err, style: const TextStyle(color: Colors.red),)
+            if (err != "")
+              Text(
+                err,
+                style: const TextStyle(color: Colors.red),
+              )
           ],
         ),
       ),
