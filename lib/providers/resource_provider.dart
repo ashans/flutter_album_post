@@ -4,6 +4,7 @@ import 'package:sample_application/models/comment_dto.dart';
 import 'dart:convert' as convert;
 
 import 'package:sample_application/models/post_dto.dart';
+import 'package:sample_application/models/user_dto.dart';
 
 class ResourceProvider {
   Future<List<Album>> getAlbums() async {
@@ -48,15 +49,15 @@ class ResourceProvider {
       }
   }
 
-  Future<List<Comment>> getUsers() async {
+  Future<List<User>> getUsers() async {
       final url = Uri.https('jsonplaceholder.typicode.com', '/users');
       final response = await http.get(url);
 
       if (response.statusCode == 200) {
         final jsonResp = convert.jsonDecode(response.body) as List<dynamic>;
-        final comments = Comment.commentListFromJson(jsonResp);
+        final users = User.userListFromJson(jsonResp);
 
-        return comments;
+        return users;
       } else {
         throw Exception('Error getting comments');
       }

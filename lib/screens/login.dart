@@ -1,7 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:sample_application/providers/user_service.dart';
+import 'package:sample_application/providers/storage_provider.dart';
 import 'package:sample_application/providers/auth_service.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:url_launcher/url_launcher_string.dart';
@@ -28,17 +28,15 @@ class _LoginPageState extends State<LoginPage> {
 
   void login(BuildContext context) {
     final authService = context.read<AuthService>();
-    final userService = context.read<UserService>();
 
     var username = _usernameController.text;
     var password = _passwordController.text;
 
     authService
         .authenticate(username, password)
-        .then((authenticated) => userService.setUser(authenticated))
-        .onError((_, stackTrace) {
+        .onError((e, stackTrace) {
       setState(() {
-        err = 'Invalid credentials';
+        err = e.toString();
       });
     });
   }
