@@ -7,8 +7,8 @@ import 'package:sample_application/models/post_dto.dart';
 import 'package:sample_application/models/user_dto.dart';
 
 class ResourceProvider {
-  Future<List<Album>> getAlbums(int id) async {
-      final url = Uri.https('jsonplaceholder.typicode.com', 'users/$id/albums');
+  Future<List<Album>> getAlbums(int userId) async {
+      final url = Uri.https('jsonplaceholder.typicode.com', 'users/$userId/albums');
       final response = await http.get(url);
 
       if (response.statusCode == 200) {
@@ -21,8 +21,8 @@ class ResourceProvider {
       }
   }
 
-  Future<List<Post>> getPosts() async {
-      final url = Uri.https('jsonplaceholder.typicode.com', '/posts');
+  Future<List<Post>> getPosts(int userId) async {
+      final url = Uri.https('jsonplaceholder.typicode.com', 'users/$userId/posts');
       final response = await http.get(url);
 
       if (response.statusCode == 200) {

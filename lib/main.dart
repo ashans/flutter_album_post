@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sample_application/providers/album_service.dart';
 import 'package:sample_application/providers/auth_service.dart';
+import 'package:sample_application/providers/post_service.dart';
 import 'package:sample_application/providers/resource_provider.dart';
 import 'package:sample_application/providers/storage_provider.dart';
 import 'package:sample_application/screens/data_view.dart';
@@ -24,6 +25,13 @@ void main() {
       Provider.of<AuthService>(context, listen: false),
     ),
   );
+  final postService = ChangeNotifierProvider<PostService>(
+    create: (context) => PostService(
+      Provider.of<StorageProvider>(context, listen: false),
+      Provider.of<ResourceProvider>(context, listen: false),
+      Provider.of<AuthService>(context, listen: false),
+    ),
+  );
 
   runApp(MultiProvider(
     providers: [
@@ -31,6 +39,7 @@ void main() {
       resourceProvider,
       authService,
       albumService,
+      postService,
     ],
     child: const MainApp(),
   ));
