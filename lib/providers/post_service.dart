@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:sample_application/models/album_dto.dart';
 import 'package:sample_application/models/post_dto.dart';
 import 'package:sample_application/providers/auth_service.dart';
 import 'package:sample_application/providers/resource_provider.dart';

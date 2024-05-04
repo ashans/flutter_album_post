@@ -32,7 +32,7 @@ class _DataViewState extends State<DataView> with SingleTickerProviderStateMixin
       ),
       body: TabBarView(
         controller: _tabController,
-        children: [
+        children: const [
           AlbumList(),
           PostList(),
         ],

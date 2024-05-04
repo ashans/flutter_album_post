@@ -9,7 +9,8 @@ class PostList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final posts = context.watch<PostService>().posts;
+    final postService = context.watch<PostService>();
+    final posts = postService.posts;
 
     return FutureBuilder<List<Post>>(
         future: posts,
@@ -23,24 +24,27 @@ class PostList extends StatelessWidget {
                     style: TextStyle(color: Colors.red)));
           }
           final posts = snapshot.data!;
-          return ListView.builder(
-            itemCount: posts.length,
-            itemBuilder: (context, index) {
-              final item = posts[index];
-              return ListTile(
-                leading: const Icon(Icons.image),
-                title: Text(item.title),
-                subtitle: Text(item.body),
-                onTap: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => CommentView(
-                                post: item,
-                              )));
-                },
-              );
-            },
+          return RefreshIndicator(
+            onRefresh: () async => postService.reloadPosts(),
+            child: ListView.builder(
+              itemCount: posts.length,
+              itemBuilder: (context, index) {
+                final item = posts[index];
+                return ListTile(
+                  leading: const Icon(Icons.image),
+                  title: Text(item.title),
+                  subtitle: Text(item.body),
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => CommentView(
+                                  post: item,
+                                )));
+                  },
+                );
+              },
+            ),
           );
         });
   }

@@ -8,7 +8,8 @@ class AlbumList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final albums = context.watch<AlbumService>().albums;
+    final albumService = context.watch<AlbumService>();
+    final albums = albumService.albums;
 
     return FutureBuilder<List<Album>>(
         future: albums,
@@ -22,14 +23,17 @@ class AlbumList extends StatelessWidget {
                     style: TextStyle(color: Colors.red)));
           }
           final albums = snapshot.data!;
-          return ListView.builder(
-            itemCount: albums.length,
-            itemBuilder: (context, index) {
-              final item = albums[index];
-              return ListTile(
-                  leading: const Icon(Icons.music_note_outlined),
-                  title: Text(item.title));
-            },
+          return RefreshIndicator(
+            onRefresh: () async => albumService.reloadAlbums(),
+            child: ListView.builder(
+              itemCount: albums.length,
+              itemBuilder: (context, index) {
+                final item = albums[index];
+                return ListTile(
+                    leading: const Icon(Icons.music_note_outlined),
+                    title: Text(item.title));
+              },
+            ),
           );
         });
   }
