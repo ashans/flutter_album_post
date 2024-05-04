@@ -5,6 +5,6 @@ class AuthService {
     if (username != 'user' || password != 'pass') {
       throw Exception('Invalid credentials');
     }
-    return User(id: username, username: username, name: 'Name of $username');
+    return User(id: username, username: username, name: 'Name of $username', email: '');
   }
 }

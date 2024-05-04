@@ -47,4 +47,18 @@ class ResourceProvider {
         throw Exception('Error getting comments');
       }
   }
+
+  Future<List<Comment>> getUsers() async {
+      final url = Uri.https('jsonplaceholder.typicode.com', '/users');
+      final response = await http.get(url);
+
+      if (response.statusCode == 200) {
+        final jsonResp = convert.jsonDecode(response.body) as List<dynamic>;
+        final comments = Comment.commentListFromJson(jsonResp);
+
+        return comments;
+      } else {
+        throw Exception('Error getting comments');
+      }
+  }
 }

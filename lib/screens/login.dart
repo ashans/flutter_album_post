@@ -69,6 +69,8 @@ class _LoginPageState extends State<LoginPage> {
                 style: const TextStyle(color: Colors.grey),
               ),
             ),
+            const Text('Password - pass',
+                style: TextStyle(color: Colors.grey)),
             TextField(
               controller: _usernameController,
               decoration: const InputDecoration(
