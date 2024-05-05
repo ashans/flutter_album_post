@@ -28,5 +28,12 @@ class AuthServiceImpl extends AuthService {
   }
 
   @override
-  User? get currentUser => storage.currentUser; 
+  User? get currentUser => storage.currentUser;
+  
+  @override
+  Future<void> logout() async {
+    storage.removeUser();
+    
+    notifyListeners();
+  } 
 }

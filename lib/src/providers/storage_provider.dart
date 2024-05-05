@@ -12,6 +12,7 @@ class StorageProvider {
     _currentUser = user;
   }
   User? get currentUser => _currentUser;
+  void removeUser() => _currentUser = null;
 
   void setAlbums(Future<List<Album>> albums) {
     _albums = albums;

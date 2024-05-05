@@ -19,7 +19,10 @@ class App extends StatelessWidget {
 
     return MaterialApp(
       home: page,
-      theme: ThemeData(brightness: Brightness.light),
+      theme: ThemeData(
+        useMaterial3: true,
+        brightness: Brightness.light,
+      ),
       darkTheme: ThemeData(brightness: Brightness.dark),
       themeMode: settingsService.isDark ? ThemeMode.dark : ThemeMode.light,
     );

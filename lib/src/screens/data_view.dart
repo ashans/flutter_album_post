@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sample_application/src/screens/profile_view.dart';
 import 'package:sample_application/src/widgets/album_list.dart';
 import 'package:sample_application/src/widgets/post_list.dart';
 import 'package:sample_application/src/widgets/theme_button.dart';
@@ -16,7 +17,7 @@ class _DataViewState extends State<DataView> with SingleTickerProviderStateMixin
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(length: 2, vsync: this);
+    _tabController = TabController(length: 3, vsync: this);
   }
 
   @override
@@ -39,6 +40,7 @@ class _DataViewState extends State<DataView> with SingleTickerProviderStateMixin
         children: const [
           AlbumList(),
           PostList(),
+          ProfileView(),
         ],
       ),
       bottomNavigationBar: TabBar(
@@ -46,6 +48,7 @@ class _DataViewState extends State<DataView> with SingleTickerProviderStateMixin
           tabs: const [
             Tab(icon: Icon(Icons.music_note), text: 'Albums'),
             Tab(icon: Icon(Icons.image), text: 'Posts'),
+            Tab(icon: Icon(Icons.person), text: 'Profile'),
           ],
         ),
     );
