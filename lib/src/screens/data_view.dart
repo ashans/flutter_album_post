@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sample_application/src/widgets/album_list.dart';
 import 'package:sample_application/src/widgets/post_list.dart';
+import 'package:sample_application/src/widgets/theme_button.dart';
 
 class DataView extends StatefulWidget {
   const DataView({super.key});
@@ -29,6 +30,9 @@ class _DataViewState extends State<DataView> with SingleTickerProviderStateMixin
     return Scaffold(
       appBar: AppBar(
         title: const Text('Content'),
+        actions: const [
+          ThemeButton()
+        ],
       ),
       body: TabBarView(
         controller: _tabController,

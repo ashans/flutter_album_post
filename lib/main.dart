@@ -4,10 +4,12 @@ import 'package:sample_application/src/app.dart';
 import 'package:sample_application/src/domain/services/album_service.dart';
 import 'package:sample_application/src/domain/services/auth_service.dart';
 import 'package:sample_application/src/domain/services/posts_service.dart';
+import 'package:sample_application/src/domain/services/setting_service.dart';
 import 'package:sample_application/src/providers/album_service.dart';
 import 'package:sample_application/src/providers/auth_service.dart';
 import 'package:sample_application/src/providers/post_service.dart';
 import 'package:sample_application/src/providers/resource_provider.dart';
+import 'package:sample_application/src/providers/settings_service.dart';
 import 'package:sample_application/src/providers/storage_provider.dart';
 
 void main() {
@@ -34,11 +36,17 @@ void main() {
       Provider.of<AuthService>(context, listen: false),
     ),
   );
+  final settingsService = ChangeNotifierProvider<SettingsService>(
+    create: (context) => SettingsServiceImpl(
+      Provider.of<StorageProvider>(context, listen: false),
+    ),
+  );
 
   runApp(MultiProvider(
     providers: [
       storageProvider,
       resourceProvider,
+      settingsService,
       authService,
       albumService,
       postService,

@@ -6,6 +6,7 @@ class StorageProvider {
   User? _currentUser;
   Future<List<Album>>? _albums;
   Future<List<Post>>? _posts;
+  bool _isDarkTheme = false;
 
   void setUser(User user) {
     _currentUser = user;
@@ -21,4 +22,7 @@ class StorageProvider {
     _posts = posts;
   }
   Future<List<Post>>? get posts => _posts;
+
+  set isDarkTheme(isDark) => _isDarkTheme = isDark;
+  get isDarkTheme => _isDarkTheme;
 }
