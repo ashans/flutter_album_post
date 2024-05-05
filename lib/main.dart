@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:sample_application/src/app.dart';
 import 'package:sample_application/src/domain/services/album_service.dart';
 import 'package:sample_application/src/domain/services/auth_service.dart';
 import 'package:sample_application/src/domain/services/posts_service.dart';
@@ -8,8 +9,6 @@ import 'package:sample_application/src/providers/auth_service.dart';
 import 'package:sample_application/src/providers/post_service.dart';
 import 'package:sample_application/src/providers/resource_provider.dart';
 import 'package:sample_application/src/providers/storage_provider.dart';
-import 'package:sample_application/src/screens/data_view.dart';
-import 'package:sample_application/src/screens/login.dart';
 
 void main() {
   final storageProvider = Provider(create: (_) => StorageProvider());
@@ -44,23 +43,6 @@ void main() {
       albumService,
       postService,
     ],
-    child: const MainApp(),
+    child: const App(),
   ));
-}
-
-class MainApp extends StatelessWidget {
-  const MainApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    final authService = context.watch<AuthService>();
-    Widget page = const LoginPage();
-    if (authService.currentUser != null) {
-      page = const DataView();
-    }
-
-    return MaterialApp(
-      home: page,
-    );
-  }
 }
