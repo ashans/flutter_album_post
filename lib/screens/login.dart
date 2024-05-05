@@ -1,6 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:sample_application/domain/services/auth_service.dart';
 import 'package:sample_application/providers/auth_service.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
@@ -12,8 +13,8 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  final _usernameController = TextEditingController();
-  final _passwordController = TextEditingController();
+  final _usernameController = TextEditingController(text: 'bret');
+  final _passwordController = TextEditingController(text: 'pass');
 
   var err = '';
 

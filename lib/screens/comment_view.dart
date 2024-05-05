@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sample_application/models/post_dto.dart';
+import 'package:sample_application/domain/models/post_dto.dart';
 import 'package:sample_application/widgets/comment_list.dart';
 
 class CommentView extends StatelessWidget {

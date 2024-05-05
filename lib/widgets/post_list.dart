@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:sample_application/models/post_dto.dart';
-import 'package:sample_application/providers/post_service.dart';
+import 'package:sample_application/domain/models/post_dto.dart';
+import 'package:sample_application/domain/services/posts_service.dart';
 import 'package:sample_application/screens/comment_view.dart';
 
 class PostList extends StatelessWidget {

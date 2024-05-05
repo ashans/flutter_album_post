@@ -1,16 +1,17 @@
-import 'package:flutter/material.dart';
-import 'package:sample_application/models/album_dto.dart';
-import 'package:sample_application/providers/auth_service.dart';
+import 'package:sample_application/domain/models/album_dto.dart';
+import 'package:sample_application/domain/services/album_service.dart';
+import 'package:sample_application/domain/services/auth_service.dart';
 import 'package:sample_application/providers/resource_provider.dart';
 import 'package:sample_application/providers/storage_provider.dart';
 
-class AlbumService extends ChangeNotifier {
+class AlbumServiceImpl extends AlbumService {
   final StorageProvider storage;
   final ResourceProvider resources;
   final AuthService authService;
 
-  AlbumService(this.storage, this.resources, this.authService);
+  AlbumServiceImpl(this.storage, this.resources, this.authService);
 
+  @override
   void reloadAlbums([bool notify = true]) {
     final currentUser = authService.currentUser!;
     final albums = resources.getAlbums(currentUser.id);
@@ -22,6 +23,7 @@ class AlbumService extends ChangeNotifier {
     }
   }
 
+  @override
   Future<List<Album>> get albums {
     final albums = storage.albums;
     if (albums == null) {

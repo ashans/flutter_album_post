@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:sample_application/domain/services/album_service.dart';
+import 'package:sample_application/domain/services/auth_service.dart';
+import 'package:sample_application/domain/services/posts_service.dart';
 import 'package:sample_application/providers/album_service.dart';
 import 'package:sample_application/providers/auth_service.dart';
 import 'package:sample_application/providers/post_service.dart';
@@ -13,20 +16,20 @@ void main() {
   final resourceProvider =
       Provider<ResourceProvider>(create: (_) => ResourceProvider());
   final authService = ChangeNotifierProvider<AuthService>(
-    create: (context) => AuthService(
+    create: (context) => AuthServiceImpl(
       Provider.of<StorageProvider>(context, listen: false),
       Provider.of<ResourceProvider>(context, listen: false),
     ),
   );
   final albumService = ChangeNotifierProvider<AlbumService>(
-    create: (context) => AlbumService(
+    create: (context) => AlbumServiceImpl(
       Provider.of<StorageProvider>(context, listen: false),
       Provider.of<ResourceProvider>(context, listen: false),
       Provider.of<AuthService>(context, listen: false),
     ),
   );
   final postService = ChangeNotifierProvider<PostService>(
-    create: (context) => PostService(
+    create: (context) => PostServiceImpl(
       Provider.of<StorageProvider>(context, listen: false),
       Provider.of<ResourceProvider>(context, listen: false),
       Provider.of<AuthService>(context, listen: false),

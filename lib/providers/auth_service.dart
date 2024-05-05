@@ -1,14 +1,15 @@
-import 'package:flutter/material.dart';
-import 'package:sample_application/models/user_dto.dart';
+import 'package:sample_application/domain/models/user_dto.dart';
+import 'package:sample_application/domain/services/auth_service.dart';
 import 'package:sample_application/providers/resource_provider.dart';
 import 'package:sample_application/providers/storage_provider.dart';
 
-class AuthService extends ChangeNotifier {
+class AuthServiceImpl extends AuthService {
   final StorageProvider storage;
   final ResourceProvider resources;
 
-  AuthService(this.storage, this.resources);
+  AuthServiceImpl(this.storage, this.resources);
 
+  @override
   Future<void> authenticate(String username, String password) async {
     final users = await resources.getUsers();
 
@@ -26,5 +27,6 @@ class AuthService extends ChangeNotifier {
     notifyListeners();
   }
 
+  @override
   User? get currentUser => storage.currentUser; 
 }
