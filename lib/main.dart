@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:sample_application/domain/services/album_service.dart';
-import 'package:sample_application/domain/services/auth_service.dart';
-import 'package:sample_application/domain/services/posts_service.dart';
-import 'package:sample_application/providers/album_service.dart';
-import 'package:sample_application/providers/auth_service.dart';
-import 'package:sample_application/providers/post_service.dart';
-import 'package:sample_application/providers/resource_provider.dart';
-import 'package:sample_application/providers/storage_provider.dart';
-import 'package:sample_application/screens/data_view.dart';
-import 'package:sample_application/screens/login.dart';
+import 'package:sample_application/src/domain/services/album_service.dart';
+import 'package:sample_application/src/domain/services/auth_service.dart';
+import 'package:sample_application/src/domain/services/posts_service.dart';
+import 'package:sample_application/src/providers/album_service.dart';
+import 'package:sample_application/src/providers/auth_service.dart';
+import 'package:sample_application/src/providers/post_service.dart';
+import 'package:sample_application/src/providers/resource_provider.dart';
+import 'package:sample_application/src/providers/storage_provider.dart';
+import 'package:sample_application/src/screens/data_view.dart';
+import 'package:sample_application/src/screens/login.dart';
 
 void main() {
   final storageProvider = Provider(create: (_) => StorageProvider());

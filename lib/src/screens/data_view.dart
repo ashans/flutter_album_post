@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:sample_application/widgets/album_list.dart';
-import 'package:sample_application/widgets/post_list.dart';
+import 'package:sample_application/src/widgets/album_list.dart';
+import 'package:sample_application/src/widgets/post_list.dart';
 
 class DataView extends StatefulWidget {
   const DataView({super.key});

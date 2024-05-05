@@ -1,10 +1,10 @@
-import 'package:sample_application/domain/models/album_dto.dart';
+import 'package:sample_application/src/domain/models/album_dto.dart';
 import 'package:http/http.dart' as http;
-import 'package:sample_application/domain/models/comment_dto.dart';
+import 'package:sample_application/src/domain/models/comment_dto.dart';
 import 'dart:convert' as convert;
 
-import 'package:sample_application/domain/models/post_dto.dart';
-import 'package:sample_application/domain/models/user_dto.dart';
+import 'package:sample_application/src/domain/models/post_dto.dart';
+import 'package:sample_application/src/domain/models/user_dto.dart';
 
 class ResourceProvider {
   Future<List<Album>> getAlbums(int userId) async {

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:sample_application/domain/models/comment_dto.dart';
-import 'package:sample_application/providers/resource_provider.dart';
+import 'package:sample_application/src/domain/models/comment_dto.dart';
+import 'package:sample_application/src/providers/resource_provider.dart';
 
 class CommentList extends StatelessWidget {
   final int postId;

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:sample_application/domain/models/post_dto.dart';
-import 'package:sample_application/domain/services/posts_service.dart';
-import 'package:sample_application/screens/comment_view.dart';
+import 'package:sample_application/src/domain/models/post_dto.dart';
+import 'package:sample_application/src/domain/services/posts_service.dart';
+import 'package:sample_application/src/screens/comment_view.dart';
 
 class PostList extends StatelessWidget {
   const PostList({super.key});
