@@ -1,0 +1,31 @@
+name: Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      target_env:
+        description: "Target environment"
+        type: choice
+        required: true
+        default: "dev"
+        options:
+          - dev
+
+jobs:
+  build-releases:
+    runs-on: ubuntu-latest
+    environment: ${{inputs.target_env}}
+    steps:
+      - name: Clone repository
+        uses: actions/checkout@v4
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: 3.19.0
+      - run: flutter pub get
+      - run: flutter build apk
+      - name: Release artifacts
+        uses: actions/upload-artifact@v1
+        with:
+          name: release-apk
+          path: build/app/outputs/apk/release/app-release.apk
