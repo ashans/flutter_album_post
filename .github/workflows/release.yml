@@ -23,7 +23,9 @@ jobs:
         with:
           flutter-version: 3.19.0
       - run: flutter pub get
-      - run: flutter build apk
+      - run: cat ${{ vars.CONFIG_DATA }} >> .env.json
+      - run: cat .env.json
+      - run: flutter build apk --dart-define-from-file=.env.json
       - name: Release artifacts
         uses: actions/upload-artifact@v1
         with:

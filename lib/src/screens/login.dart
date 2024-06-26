@@ -1,8 +1,8 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:sample_application/src/config/app_config.dart';
 import 'package:sample_application/src/domain/services/auth_service.dart';
-import 'package:sample_application/src/providers/auth_service.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 class LoginPage extends StatefulWidget {
@@ -44,7 +44,7 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Login'),
+        title: Text(AppConfig.loginText),
       ),
       body: Padding(
         padding: const EdgeInsets.all(20.0),
