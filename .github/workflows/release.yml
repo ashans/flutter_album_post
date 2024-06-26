@@ -23,7 +23,7 @@ jobs:
         with:
           flutter-version: 3.19.0
       - run: flutter pub get
-      - run: echo ${{ vars.CONFIG_DATA }}
+      - run: echo "${{ vars.CONFIG_DATA }}"
       - run: echo "${{ vars.CONFIG_DATA }}" >> .env.json
       - run: cat .env.json
       - run: flutter build apk --dart-define-from-file=.env.json
