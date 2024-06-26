@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sample_application/src/config/app_config.dart';
 import 'package:sample_application/src/screens/profile_view.dart';
 import 'package:sample_application/src/widgets/album_list.dart';
 import 'package:sample_application/src/widgets/post_list.dart';
@@ -30,7 +31,7 @@ class _DataViewState extends State<DataView> with SingleTickerProviderStateMixin
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Content'),
+        title: Text(AppConfig.contentText),
         actions: const [
           ThemeButton()
         ],
